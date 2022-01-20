@@ -1,0 +1,125 @@
+/*-------------google fonts---------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+:root{
+/*------color------*/
+
+--color-text: #CFD7C7;
+--color-buttom: #0B2027;
+--color-body: #70A9A1;
+--color-content:#2b4852;
+/*------font and typografhy--------*/
+--body-font:'Poppins', sans-serif;
+
+--big-font-size:3rem;
+--medium-font-size:1.25rem;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.App{
+    font-family: var(--body-font);
+    font-size: var(--medium-font-size);
+    background-color: var(--color-body);
+    color: var(--color-text);
+    
+}
+
+h1{
+   font-size: var(--big-font-size);
+   text-align: center;
+   margin-bottom: 3rem;
+}
+
+/*----reusable css class----*/
+
+.container{
+    max-width: 600px;
+    margin:auto;
+    
+}
+.grid{
+display: grid;
+}
+.card_container{
+   gap: 3rem 1.25rem;
+    
+}
+.card{
+    padding: 3rem 0;
+}
+
+
+.card_icon-rigth{
+    margin-top: -8px;
+    margin-left: 80%;
+    
+}
+.card_icon-90{
+    margin-right: 1rem;
+    transform: rotate(-180deg);
+}
+.card_content{
+    position: relative;
+    padding: 3rem 3rem 2rem;
+    background-color: var(--color-content);
+    border-radius: 50px;
+    box-shadow: 0 12px 24px var(--color-buttom);
+    transition: .4s;
+}
+.card_content:hover{
+    box-shadow: 0 16px 24px var(--color-buttom);
+}
+.card_quote{
+display:block;
+
+font-size: var(--medium-font-size);
+}
+
+.card_author{
+    font-size: var(--medium-font-size);
+    text-align: right;
+    font-weight: medium;
+    margin-bottom: 1rem;
+}
+.card_button-content{
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.card_button{
+    
+    width: 45%;
+    padding: 1.25rem;
+    border: none;
+    font-size: var(--medium-font-size);
+    color: var(--color-text);
+    background-color: var(--color-buttom);
+    border-radius: .5rem;
+    text-align: center;
+    cursor: pointer;
+   
+}
+.uil{
+    font-size: 25px;
+}
+@media screen and (max-width: 600px) {
+    .container{
+        margin-left: 1rem;
+        margin-right: 1rem;
+        
+    }
+    :root{
+        --big-font-size:1.5rem;
+--medium-font-size:.830rem;
+    }
+    .card_button-conten{
+        justify-content: space-between;
+    }
+}
