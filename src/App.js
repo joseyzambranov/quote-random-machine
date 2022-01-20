@@ -6,32 +6,44 @@ let quoteBD = "https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c3
 
 let backgroundColor =["#70a9d5","#7089d5","#7054d5","#709e7c"]
 
-function App() {
-    
-    const [quote, setQuote] = useState("If you’re offered a seat on a rocket ship, don’t ask what seat! Just get on.")
-    const [author, setAuthor] = useState("Sheryl Sandberg")
-    const [quoteArr,setQuoteArr] = useState(null)
-    const [randomNumber,setRandomNumber] = useState(0)
-    const [randomColor,setRandomColor] = useState("#70A9A1")
-
-    const fetchQuote = async(url)=>{
+const arrRandomVal = (arr)=>{
+    let valArr = Math.floor(arr.length*Math.random())
+    return arr[valArr]
+}
+const useFetch = url =>{
+    const [data,setData] = useState(null)
+    async function fetchData(){
         const response = await fetch(url)
-        const parsedJSON = await response.json()
-        setQuoteArr(parsedJSON.quotes)
-        console.log(parsedJSON)
+        const json = await response.json()
+        setData(json.quotes)
     }
+    useEffect(()=>{fetchData()},[url]);
+    return data;
+}
+
+
+function App() {
+
+    const quotes = useFetch(quoteBD)
+
+    const [randomColor,setRandomColor] = useState(arrRandomVal(backgroundColor))
+    const [quote, setQuote] = useState('')
+    const [author, setAuthor] = useState('')
 
     useEffect(()=>{
-        fetchQuote(quoteBD)
-    },[quoteBD])
+        if(quotes){
+            setQuote(arrRandomVal(quotes).quote)
+            setAuthor(arrRandomVal(quotes).author)
+        }
+    },[quotes])
+
 
     const getRandomQuote = ()=>{
-        let ramdonInteger = Math.floor(quoteArr.length * Math.random())
-        let ramdonIntegerColor = Math.floor(backgroundColor.length * Math.random())
-        setRandomNumber(ramdonInteger)
-        setRandomColor(backgroundColor[ramdonIntegerColor])
-        setQuote(quoteArr[ramdonInteger].quote)
-        setAuthor(quoteArr[ramdonInteger].author)
+ 
+        
+        setRandomColor(arrRandomVal(backgroundColor))
+        setQuote(arrRandomVal(quotes).quote)
+        setAuthor(arrRandomVal(quotes).author)
     }
     
     return (
